@@ -8,28 +8,42 @@
         <h5>Pasar el modelo PIM a un modelo PSM</h5>
         <div class="mermaid">
           classDiagram
-    class Jugador
-    Jugador : +String nombre
-    Jugador : +String apellido
-    Jugador : +get(dni)
-    Jugador : +post(nombres)
+        
+            class Jugador{
+                +String nombre
+                +String apellido
+                +setNombre(nombre String)
+                +getNombre ( ) String
+                +setApellido(apellido String)
+                +getApellido ( ) String
+            }
+            
+            class Equipo{
+                +String nombre
+                +String tipo_deporte
+                +String siglas
+                +setNombre(nombre String)
+                +getNombre ( ) String
+                +setTipoDeporte(tipo_deporte String)
+                +getTipoDeporte() String
+                +setSiglas(siglas String)
+                +getSiglas() String
+                +setCategoria(tipo_deporte String, nombre String)
+                +getCategoria() String
+            }
+            direction LR
+            Equipo "1" --|> "0 .. *" Jugador
 
-    class Equipo
-    Equipo : +String nombre
-    Equipo : +String tipo_nombre
-    Equipo : +String siglas
-    Equipo : +get(categoria)
-    Equipo : +post(categoria)
-    
-    Equipo "1" --|> "0 .. *" Jugador
-
-    class Sancion
-    Sancion : +String observacion
-    Sancion : +Money multa
-    Sancion : +get(dni)
-    Sancion : +put(valor)
-
-    Jugador "1" --|> "0 .. *" Sancion
+            class Sancion{
+                +String observacion
+                +Money multa
+                +getObservacion(observacion String)
+                +setObservacion() String
+                #getObservacion(multa Money)
+                #setObservacion() Money
+            }
+            direction LR
+            Jugador "1" --|> "0 .. *" Sancion
 
         </div>
     </body>
